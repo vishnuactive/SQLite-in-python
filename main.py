@@ -17,8 +17,12 @@ def run_interpreter():
             if output:
                 if output['type'] == "CREATE":
                     storage.create_table(output['table'],output['columns'])
+                elif output['type'] == "INSERT":
+                    storage.insert_into_table(output['table'],output['values'])
+                elif output['type'] == "SELECT":
+                    storage.select_data(output['table'])
         except KeyboardInterrupt:
-            print("\nExiting from pySQLite.Goodbye!")
+            print("\nExiting from PySQLite.Goodbye!")
             sys.exit()
         except Exception as ex:
             print(f"Error : {str(ex)} ❌ ")

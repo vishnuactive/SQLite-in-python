@@ -1,0 +1,18 @@
+{
+    "schema": [
+        {
+            "name": "id",
+            "type": "int"
+        },
+        {
+            "name": "name",
+            "type": "text"
+        }
+    ],
+    "rows": [
+        {
+            "id": 1,
+            "name": "tt"
+        }
+    ]
+}
