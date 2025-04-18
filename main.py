@@ -1,4 +1,6 @@
 import sys
+from engine import parser
+from engine import storage
 
 def run_interpreter():
     print("Welcome to PySQLite, A 'Scaled-down' version of SQLite. Type '.exit' or '.quit' to Exit")
@@ -11,12 +13,15 @@ def run_interpreter():
                 print("Exiting From SQLite.Goodbye!")
                 break
             
-            print(f"Received Command : {str(command)}")
+            output = parser.parse_query(command)
+            if output:
+                if output['type'] == "CREATE":
+                    storage.create_table(output['table'],output['columns'])
         except KeyboardInterrupt:
             print("\nExiting from pySQLite.Goodbye!")
             sys.exit()
         except Exception as ex:
-            print(f"Error : {str(ex)}")
+            print(f"Error : {str(ex)} ❌ ")
 
 
 if __name__ == '__main__':
